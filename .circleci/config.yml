@@ -36,11 +36,11 @@ jobs:
       - run: mvn integration-test
       
     test:
-    docker:
-      - image: image: circleci/openjdk:8-jdk
-    steps:
-      - checkout
-      - run: ls -ltr
+      docker:
+         - image: circleci/openjdk:8-jdk
+      steps:
+         - checkout
+         - run: ls -ltr
       
 workflows:
   version: 2
