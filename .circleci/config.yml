@@ -8,11 +8,6 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/openjdk:8-jdk
-      
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/postgres:9.4
 
     working_directory: ~/repo
 
@@ -23,17 +18,9 @@ jobs:
     steps:
       - checkout
 
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "pom.xml" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-
       - run: mvn clean package
       - store_artifacts:
-          path: test-1.0-SNAPSHOT.jar
-          prefix: sample-springboot-ui
+          path: /home/circleci/repo/target/test-1.0-SNAPSHOT.jar
       
     test:
       docker:
