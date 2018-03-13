@@ -22,7 +22,7 @@ jobs:
       - store_artifacts:
           path: /home/circleci/repo/target/test-1.0-SNAPSHOT.jar
       
-    test:
+  test:
       docker:
          - image: circleci/openjdk:8-jdk
       steps:
