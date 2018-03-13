@@ -31,21 +31,26 @@ jobs:
           - v1-dependencies-
 
       - run: mvn clean package
-        
-      # run tests!
-      - run: mvn integration-test
+      - store_artifacts:
+          path: test-1.0-SNAPSHOT.jar
+          prefix: sample-springboot-ui
       
     test:
       docker:
          - image: circleci/openjdk:8-jdk
       steps:
          - checkout
-         - run: ls -ltr
+         - run: 
+            name: integration tests!
+            command: mvn integration-test
+
       
 workflows:
   version: 2
   build_and_test:
     jobs:
       - build
-      - test
+      - test:
+          requires:
+            - build
 
